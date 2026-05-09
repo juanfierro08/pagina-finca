@@ -29,8 +29,8 @@ export const activateProperty = async (propertyId) => {
       if (prop) prop.status = 'en_revision'; // Ahora pasa a revisión de RNT
       
       // Simular el envío de correo usando la API gratuita de FormSubmit
-      // En producción real, esto enviaría el email
-      fetch('https://formsubmit.co/ajax/tu-correo-admin@alojate.com', {
+      // En producción real, esto enviará el email (FormSubmit requiere que actives tu correo la primera vez)
+      fetch('https://formsubmit.co/ajax/juanfierro0821@gmail.com', {
         method: "POST",
         headers: { 
             'Content-Type': 'application/json',
@@ -38,7 +38,9 @@ export const activateProperty = async (propertyId) => {
         },
         body: JSON.stringify({
             _subject: `Nueva Propiedad Requiere Aprobación - RNT Recibido`,
-            mensaje: `El anfitrión ${prop?.hostId} ha pagado la suscripción y subido la propiedad "${prop?.title}". Por favor, descarga y verifica su RNT (PDF) en tu Panel de Administrador.`
+            mensaje: `El anfitrión ${prop?.hostId} ha pagado la suscripción y subido la propiedad "${prop?.title}". Por favor, ingresa al panel de Administrador en https://alojate-sable.vercel.app para descargar y revisar el RNT en PDF.`,
+            Host: prop?.hostId,
+            Propiedad: prop?.title
         })
       }).catch(err => console.log('Simulación de correo fallida (sin internet o adblocker)', err));
 
