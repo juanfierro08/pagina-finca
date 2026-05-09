@@ -26,7 +26,22 @@ export const activateProperty = async (propertyId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const prop = MOCK_PROPERTIES.find(p => p.id === propertyId);
-      if (prop) prop.status = 'activo';
+      if (prop) prop.status = 'en_revision'; // Ahora pasa a revisión de RNT
+      
+      // Simular el envío de correo usando la API gratuita de FormSubmit
+      // En producción real, esto enviaría el email
+      fetch('https://formsubmit.co/ajax/tu-correo-admin@alojate.com', {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: `Nueva Propiedad Requiere Aprobación - RNT: ${prop?.rnt || 'N/A'}`,
+            mensaje: `El anfitrión ${prop?.hostId} ha pagado la suscripción y subido la propiedad "${prop?.title}". Por favor, verifica su RNT: ${prop?.rnt} en tu Panel de Administrador.`
+        })
+      }).catch(err => console.log('Simulación de correo fallida (sin internet o adblocker)', err));
+
       resolve(prop);
     }, 500);
   });
@@ -37,6 +52,26 @@ export const boostProperty = async (propertyId) => {
     setTimeout(() => {
       const prop = MOCK_PROPERTIES.find(p => p.id === propertyId);
       if (prop) prop.boosted = true;
+      resolve(prop);
+    }, 500);
+  });
+};
+
+export const approveProperty = async (propertyId) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const prop = MOCK_PROPERTIES.find(p => p.id === propertyId);
+      if (prop) prop.status = 'activo';
+      resolve(prop);
+    }, 500);
+  });
+};
+
+export const rejectProperty = async (propertyId) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const prop = MOCK_PROPERTIES.find(p => p.id === propertyId);
+      if (prop) prop.status = 'rechazado';
       resolve(prop);
     }, 500);
   });

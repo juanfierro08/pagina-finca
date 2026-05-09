@@ -11,6 +11,7 @@ export default function CreateProperty() {
     title: '',
     description: '',
     location: '',
+    rnt: '',
     pricePerNight: '',
     images: [], 
     rules: {
@@ -120,6 +121,20 @@ export default function CreateProperty() {
               onChange={handleChange} 
               required 
             />
+          </div>
+
+          <div className="form-group mt-md">
+            <label>Registro Nacional de Turismo (RNT)</label>
+            <input 
+              type="text" 
+              name="rnt" 
+              className="input-field" 
+              placeholder="Ej. 123456" 
+              value={formData.rnt} 
+              onChange={handleChange} 
+              required 
+            />
+            <small className="text-muted">Obligatorio. Será verificado por administración antes de publicarse.</small>
           </div>
 
           <div className="form-group">

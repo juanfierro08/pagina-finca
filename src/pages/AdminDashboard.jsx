@@ -28,6 +28,18 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleApprove = async (id) => {
+    const { approveProperty } = await import('../services/firebaseMock');
+    await approveProperty(id);
+    setRefresh(prev => prev + 1);
+  };
+
+  const handleReject = async (id) => {
+    const { rejectProperty } = await import('../services/firebaseMock');
+    await rejectProperty(id);
+    setRefresh(prev => prev + 1);
+  };
+
   return (
     <div className="container dashboard-page">
       <div className="dashboard-header mb-xl">
@@ -52,11 +64,20 @@ export default function AdminDashboard() {
                   <h4>{prop.title}</h4>
                   <p className="text-muted">{prop.location} - ${prop.pricePerNight} USD</p>
                   <p style={{fontSize: '0.8rem'}}>Host ID: {prop.hostId}</p>
+                  <p style={{fontSize: '0.9rem', fontWeight: 'bold', color: 'var(--color-primary)'}}>RNT: {prop.rnt || 'No proporcionado'}</p>
                 </div>
                 <div className="property-status" style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px'}}>
-                  <span className={`badge ${prop.status === 'activo' ? 'badge-success' : 'badge-warning'}`}>
+                  <span className={`badge ${prop.status === 'activo' ? 'badge-success' : prop.status === 'en_revision' ? 'badge-warning' : 'badge-danger'}`} style={{background: prop.status === 'rechazado' ? 'red' : undefined}}>
                     {prop.status}
                   </span>
+                  
+                  {prop.status === 'en_revision' && (
+                    <div style={{display: 'flex', gap: '5px'}}>
+                      <button onClick={() => handleApprove(prop.id)} className="btn-success" style={{padding: '4px 8px', fontSize: '0.8rem'}}>Aprobar</button>
+                      <button onClick={() => handleReject(prop.id)} className="btn-secondary" style={{padding: '4px 8px', fontSize: '0.8rem', color: 'red', borderColor: 'red'}}>Rechazar</button>
+                    </div>
+                  )}
+
                   <button onClick={() => handleDelete(prop.id)} className="btn-secondary" style={{padding: '4px 8px', fontSize: '0.8rem', color: 'var(--color-danger)', borderColor: 'var(--color-danger)'}}>
                     Eliminar
                   </button>

@@ -61,14 +61,14 @@ export default function HostDashboard() {
                   <p className="text-muted">${prop.pricePerNight} / noche</p>
                 </div>
                 <div className="property-status">
-                  <span className={`badge ${prop.status === 'activo' ? 'badge-success' : 'badge-warning'}`}>
-                    {prop.status === 'activo' ? 'Activo' : 'Pendiente Pago'}
+                  <span className={`badge ${prop.status === 'activo' ? 'badge-success' : prop.status === 'en_revision' ? 'badge-warning' : prop.status === 'rechazado' ? 'badge-danger' : 'badge-warning'}`} style={{background: prop.status === 'rechazado' ? 'red' : undefined}}>
+                    {prop.status === 'activo' ? 'Activo' : prop.status === 'en_revision' ? 'En Revisión (RNT)' : prop.status === 'rechazado' ? 'Rechazado (RNT Inválido)' : 'Pendiente Pago'}
                   </span>
                   {prop.boosted && <span className="badge" style={{background: '#ffd700', color: '#000', marginLeft: '5px'}}>🌟 Destacado</span>}
                   
-                  {prop.status !== 'activo' ? (
+                  {prop.status === 'pendiente' ? (
                     <button onClick={() => navigate(`/checkout/${prop.id}`)} className="btn-secondary ml-sm mt-sm" style={{padding: '4px 8px', fontSize: '0.8rem'}}>Pagar Suscripción</button>
-                  ) : !prop.boosted ? (
+                  ) : prop.status === 'activo' && !prop.boosted ? (
                     <button onClick={() => navigate(`/boost/${prop.id}`)} className="btn-primary ml-sm mt-sm" style={{padding: '4px 8px', fontSize: '0.8rem', background: '#ffd700', color: '#000', border: 'none'}}>🚀 Impulsar (40k COP)</button>
                   ) : null}
                 </div>
