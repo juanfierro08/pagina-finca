@@ -33,7 +33,7 @@ export default function Navbar() {
           {user ? (
             <>
               {user.role !== 'Administrador' && (
-                <button onClick={toggleMode} className="btn-secondary" style={{fontSize: '0.85rem', padding: '6px 12px', marginRight: '10px'}}>
+                <button onClick={toggleMode} className="btn-secondary mode-toggle-btn">
                   {user.currentMode === 'Huesped' ? 'Modo Anfitrión' : 'Modo Huésped'}
                 </button>
               )}

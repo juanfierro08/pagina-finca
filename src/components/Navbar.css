@@ -98,9 +98,36 @@
 .logout-btn {
   padding: 8px 16px;
 }
+.mode-toggle-btn {
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  margin-right: 10px;
+}
 
 @media (max-width: 768px) {
-  .publish-btn, .currency-selector {
+  .publish-btn, .currency-selector, .nav-link {
     display: none;
+  }
+  .greeting-text {
+    display: none;
+  }
+  .navbar-links {
+    gap: 8px;
+  }
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  .user-greeting {
+    padding: 4px;
+    border: none;
+  }
+  .logout-btn {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+  .mode-toggle-btn {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    margin-right: 5px;
   }
 }

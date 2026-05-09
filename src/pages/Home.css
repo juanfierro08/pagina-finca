@@ -90,3 +90,15 @@
 
 .w-100 { width: 100%; }
 .mt-sm { margin-top: var(--spacing-sm); }
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .properties-grid {
+    grid-template-columns: 1fr;
+  }
+}
