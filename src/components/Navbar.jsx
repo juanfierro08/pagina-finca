@@ -1,0 +1,58 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useCurrency } from '../context/CurrencyContext';
+import './Navbar.css';
+
+export default function Navbar() {
+  const { user, logout } = useAuth();
+  const { currency, setCurrency } = useCurrency();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  return (
+    <nav className="navbar">
+      <div className="container navbar-container">
+        <Link to="/" className="navbar-brand">
+          <img src="/logo.png" alt="Alojalo Logo" className="navbar-logo" />
+          <span className="gradient-text">Alojalo</span>
+        </Link>
+        
+        <div className="navbar-links">
+          {/* Currency selector Mock */}
+          <select className="currency-selector" value={currency} onChange={e => setCurrency(e.target.value)}>
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="COP">COP ($)</option>
+            <option value="MXN">MXN ($)</option>
+          </select>
+
+          {user ? (
+            <>
+              <Link to={user.role === 'Administrador' ? '/admin-dashboard' : user.role === 'Propietario' ? '/host-dashboard' : '/guest-dashboard'} className="user-greeting">
+                <span className="user-avatar-small">
+                  {user.photo ? <img src={user.photo} alt="Avatar" /> : user.name.charAt(0)}
+                </span>
+                Hola, {user.name}
+              </Link>
+              
+              {user.role === 'Propietario' && (
+                <Link to="/create-listing" className="btn-secondary publish-btn">Publicar Inmueble</Link>
+              )}
+              <Link to="/messages" className="nav-link">Mensajes</Link>
+              <button onClick={handleLogout} className="btn-secondary logout-btn">Salir</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="nav-link">Ingresar</Link>
+              <Link to="/login" className="btn-primary">Registrarse</Link>
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+}

@@ -1,0 +1,67 @@
+.create-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: var(--spacing-xxl);
+}
+
+.create-header {
+  text-align: center;
+  margin: var(--spacing-xl) 0;
+}
+
+.create-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-xs);
+}
+
+.create-form {
+  padding: var(--spacing-xl);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.pay-to-list-banner {
+  background: rgba(255, 56, 92, 0.1);
+  border: 1px solid rgba(255, 56, 92, 0.2);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+}
+
+.pay-to-list-banner h3 {
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.create-btn {
+  font-size: 1.1rem;
+  padding: var(--spacing-md);
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

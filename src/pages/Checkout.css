@@ -1,0 +1,35 @@
+.checkout-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+}
+
+.checkout-card {
+  width: 100%;
+  max-width: 500px;
+  padding: var(--spacing-xl);
+}
+
+.checkout-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.checkout-header h2 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.payment-summary {
+  background: var(--color-surface-hover);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+}
+
+.checkout-btn {
+  font-size: 1.1rem;
+  padding: var(--spacing-md);
+}
+
+.mt-lg { margin-top: var(--spacing-lg); }

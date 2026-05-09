@@ -1,0 +1,171 @@
+:root {
+  /* Color Palette - Alojalo */
+  --color-primary: #0047AB; /* Azul Cobalto */
+  --color-primary-hover: #003380;
+  --color-secondary: #50C878; /* Verde Esmeralda */
+  --color-secondary-hover: #3EB063;
+  
+  --color-bg: #FFFFFF;
+  --color-surface: #F8F9FA;
+  --color-surface-hover: #E9ECEF;
+  --color-text: #212529;
+  --color-text-muted: #6C757D;
+  --color-border: #DEE2E6;
+  --color-success: #50C878;
+  --color-danger: #DC3545;
+  
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem;
+  --spacing-xxl: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Common Layout Components */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.glass-panel {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-surface);
+  border-color: #ced4da;
+}
+
+.btn-success {
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-success:hover {
+  background-color: var(--color-secondary-hover);
+  transform: translateY(-2px);
+}
+
+.input-field {
+  width: 100%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.input-field:focus {
+  outline: none;
+  background-color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.1);
+}
+
+.gradient-text {
+  color: var(--color-primary);
+  /* Fallback in case gradient isn't desired, but user asked for Cobalt/Emerald */
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Utilities */
+.w-100 { width: 100%; }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.text-center { text-align: center; }
+.text-muted { color: var(--color-text-muted); }

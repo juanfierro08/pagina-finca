@@ -1,0 +1,128 @@
+.property-title-lg {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.1;
+}
+
+.property-gallery {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--spacing-xl);
+  height: 50vh;
+  min-height: 400px;
+}
+
+.gallery-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.gallery-main-img:hover {
+  transform: scale(1.02);
+}
+
+.property-content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-xxl);
+}
+
+.property-description {
+  padding: var(--spacing-xl);
+}
+
+.property-description h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+}
+
+.property-description p {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.calendar-wrapper {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  color: #000; /* React Calendar default needs dark text or override */
+}
+
+/* Override react-calendar for dark theme */
+.react-calendar {
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--color-text) !important;
+  font-family: inherit !important;
+}
+.react-calendar__navigation button {
+  color: var(--color-text) !important;
+}
+.react-calendar__month-view__days__day {
+  color: var(--color-text) !important;
+}
+.react-calendar__month-view__days__day--weekend {
+  color: var(--color-primary) !important;
+}
+.react-calendar__tile--active {
+  background: var(--color-primary) !important;
+  color: white !important;
+  border-radius: var(--radius-sm);
+}
+
+.booking-card {
+  position: sticky;
+  top: 100px;
+  padding: var(--spacing-xl);
+}
+
+.booking-price h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.booking-price small {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-muted);
+}
+
+.summary-row.total {
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: var(--spacing-md);
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--spacing-lg) 0;
+}
+
+.booking-btn {
+  font-size: 1.1rem;
+  padding: var(--spacing-md);
+}
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+
+@media (max-width: 768px) {
+  .property-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
