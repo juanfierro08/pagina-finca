@@ -22,11 +22,43 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Regla especial y segura para tu cuenta de Administrador global
+    if (formData.email === 'juanfierro0821@gmail.com') {
+      if (formData.password !== 'Admin123!') {
+        alert('Contraseña de administrador incorrecta.');
+        return;
+      }
+      login({ name: 'Juan Fierro (Admin)', email: formData.email, phone: '000', document: '000', photo: '' });
+      navigate('/');
+      return;
+    }
+
+    // Base de datos simulada en el navegador (Local Storage)
+    const usersDB = JSON.parse(localStorage.getItem('alojate_users_db') || '[]');
+
     if (isRegister) {
+      // Verificar si ya existe
+      if (usersDB.find(u => u.email === formData.email)) {
+        alert('Este correo ya está registrado. Por favor, inicia sesión.');
+        return;
+      }
+      // Guardar nuevo usuario
+      usersDB.push(formData);
+      localStorage.setItem('alojate_users_db', JSON.stringify(usersDB));
       login(formData);
     } else {
-      // Mock login check
-      login({ name: formData.email.split('@')[0], email: formData.email, phone: '', document: '', photo: '' });
+      // Buscar usuario para iniciar sesión
+      const user = usersDB.find(u => u.email === formData.email);
+      if (!user) {
+        alert('Correo no encontrado. Por favor, regístrate primero.');
+        return;
+      }
+      if (user.password !== formData.password) {
+        alert('Contraseña incorrecta.');
+        return;
+      }
+      login(user);
     }
     navigate('/');
   };
