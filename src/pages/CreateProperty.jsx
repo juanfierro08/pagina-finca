@@ -22,8 +22,8 @@ export default function CreateProperty() {
   });
   const [loading, setLoading] = useState(false);
 
-  // Redirigir si no es propietario
-  if (!user || user.role !== 'Propietario') {
+  // Redirigir si no está en modo propietario
+  if (!user || user.currentMode !== 'Propietario') {
     return (
       <div className="container mt-xl text-center">
         <h2>Acceso denegado. Solo los propietarios pueden publicar inmuebles.</h2>

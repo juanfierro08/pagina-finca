@@ -10,15 +10,15 @@ export default function HostDashboard() {
   const [myProperties, setMyProperties] = useState([]);
 
   useEffect(() => {
-    if (user && user.role === 'Propietario') {
+    if (user && user.currentMode === 'Propietario') {
       getProperties().then(data => {
         setMyProperties(data.filter(p => p.hostId === user.id));
       });
     }
   }, [user]);
 
-  if (!user || user.role !== 'Propietario') {
-    return <div className="container mt-xl">Acceso denegado.</div>;
+  if (!user || user.currentMode !== 'Propietario') {
+    return <div className="container mt-xl">Acceso denegado. Cambia a Modo Anfitrión.</div>;
   }
 
   return (
