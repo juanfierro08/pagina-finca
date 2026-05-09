@@ -16,11 +16,21 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     const mockUser = {
-      id: userData.role === 'Administrador' ? 'admin1' : userData.role === 'Propietario' ? 'h1' : 'g1',
+      id: userData.role === 'Administrador' ? 'admin1' : `u_${Date.now()}`,
+      currentMode: 'Huesped', // Default mode
       ...userData
     };
     setUser(mockUser);
     localStorage.setItem('mockUser', JSON.stringify(mockUser));
+  };
+
+  const toggleMode = () => {
+    if (user && user.role !== 'Administrador') {
+      const newMode = user.currentMode === 'Huesped' ? 'Propietario' : 'Huesped';
+      const updatedUser = { ...user, currentMode: newMode };
+      setUser(updatedUser);
+      localStorage.setItem('mockUser', JSON.stringify(updatedUser));
+    }
   };
 
   const logout = () => {
@@ -29,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading, toggleMode }}>
       {children}
     </AuthContext.Provider>
   );

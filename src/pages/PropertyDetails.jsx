@@ -20,12 +20,19 @@ export default function PropertyDetails() {
   const [rulesAccepted, setRulesAccepted] = useState(false);
 
   useEffect(() => {
+    if (!user) {
+      alert("Debes iniciar sesión para ver los detalles de los inmuebles y reservar.");
+      navigate('/login');
+      return;
+    }
     // Simulamos la carga desde la base de datos
     const prop = MOCK_PROPERTIES.find(p => p.id === id);
     if (prop) {
       setProperty(prop);
     }
-  }, [id]);
+  }, [id, user, navigate]);
+
+  if (!user) return null;
 
   const handleReserve = () => {
     if (!user) {
@@ -64,8 +71,15 @@ export default function PropertyDetails() {
       <h1 className="property-title-lg">{property.title}</h1>
       {property.location && <p className="text-muted" style={{fontSize: '1.2rem', marginBottom: '1rem'}}>📍 Ubicación: {property.location}</p>}
       
-      <div className="property-gallery">
-        <img src={property.images[0]} alt={property.title} className="gallery-main-img" />
+      <div className="property-gallery" style={{ display: 'flex', overflowX: 'auto', gap: '10px', paddingBottom: '10px', scrollSnapType: 'x mandatory' }}>
+        {property.images && property.images.map((img, idx) => (
+          <img 
+            key={idx} 
+            src={img} 
+            alt={`${property.title} - Foto ${idx + 1}`} 
+            style={{ width: '100%', maxWidth: '600px', height: '400px', objectFit: 'cover', borderRadius: '12px', scrollSnapAlign: 'start', flexShrink: 0 }} 
+          />
+        ))}
       </div>
 
       <div className="property-content-grid">

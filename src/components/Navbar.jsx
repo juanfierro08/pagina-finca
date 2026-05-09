@@ -4,7 +4,7 @@ import { useCurrency } from '../context/CurrencyContext';
 import './Navbar.css';
 
 export default function Navbar() {
-  const { user, logout } = useAuth();
+  const { user, logout, toggleMode } = useAuth();
   const { currency, setCurrency } = useCurrency();
   const navigate = useNavigate();
 
@@ -32,14 +32,19 @@ export default function Navbar() {
 
           {user ? (
             <>
-              <Link to={user.role === 'Administrador' ? '/admin-dashboard' : user.role === 'Propietario' ? '/host-dashboard' : '/guest-dashboard'} className="user-greeting">
+              {user.role !== 'Administrador' && (
+                <button onClick={toggleMode} className="btn-secondary" style={{fontSize: '0.85rem', padding: '6px 12px', marginRight: '10px'}}>
+                  {user.currentMode === 'Huesped' ? 'Modo Anfitrión' : 'Modo Huésped'}
+                </button>
+              )}
+              <Link to={user.role === 'Administrador' ? '/admin-dashboard' : user.currentMode === 'Propietario' ? '/host-dashboard' : '/guest-dashboard'} className="user-greeting">
                 <span className="user-avatar-small">
                   {user.photo ? <img src={user.photo} alt="Avatar" /> : user.name.charAt(0)}
                 </span>
                 Hola, {user.name}
               </Link>
               
-              {user.role === 'Propietario' && (
+              {user.currentMode === 'Propietario' && (
                 <Link to="/create-listing" className="btn-secondary publish-btn">Publicar Inmueble</Link>
               )}
               <Link to="/messages" className="nav-link">Mensajes</Link>

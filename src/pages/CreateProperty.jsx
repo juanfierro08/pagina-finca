@@ -12,7 +12,7 @@ export default function CreateProperty() {
     description: '',
     location: '',
     pricePerNight: '',
-    imageUrl: '', // Simplificado para mock
+    images: [], 
     rules: {
       pets: false,
       smoking: false,
@@ -31,6 +31,20 @@ export default function CreateProperty() {
       </div>
     );
   }
+
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    const promises = files.map(file => {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    });
+    Promise.all(promises).then(base64Images => {
+      setFormData({ ...formData, images: base64Images });
+    });
+  };
 
   const handleChange = (e) => {
     if (e.target.type === 'checkbox') {
@@ -58,7 +72,7 @@ export default function CreateProperty() {
         ...formData,
         hostId: user.id,
         pricePerNight: Number(formData.pricePerNight),
-        images: [formData.imageUrl || 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&q=80&w=1000']
+        images: formData.images.length > 0 ? formData.images : ['https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&q=80&w=1000']
       };
       
       const newProp = await createProperty(propertyData);
@@ -137,15 +151,18 @@ export default function CreateProperty() {
             </div>
             
             <div className="form-group">
-              <label>URL de la imagen (Mock)</label>
+              <label>Fotos del Inmueble (Sube desde tu galería)</label>
               <input 
-                type="url" 
-                name="imageUrl" 
+                type="file" 
+                multiple
+                accept="image/*"
                 className="input-field" 
-                placeholder="https://..." 
-                value={formData.imageUrl} 
-                onChange={handleChange} 
+                onChange={handleFileChange} 
+                required 
               />
+              {formData.images.length > 0 && (
+                <p className="text-muted mt-sm" style={{fontSize: '0.8rem'}}>✅ {formData.images.length} foto(s) seleccionadas</p>
+              )}
             </div>
           </div>
 
