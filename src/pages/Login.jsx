@@ -34,24 +34,24 @@ export default function Login() {
   };
 
   const loginAsHost = () => {
-    login({ name: 'Propietario Demo', email: 'host@alojalo.com', role: 'Propietario', phone: '123456789', document: '111222333', photo: '' });
+    login({ name: 'Propietario Demo', email: 'host@Alojate.com', role: 'Propietario', phone: '123456789', document: '111222333', photo: '' });
     navigate('/host-dashboard');
   };
 
   const loginAsGuest = () => {
-    login({ name: 'Huésped Demo', email: 'guest@alojalo.com', role: 'Huesped', phone: '987654321', document: '999888777', photo: '' });
+    login({ name: 'Huésped Demo', email: 'guest@Alojate.com', role: 'Huesped', phone: '987654321', document: '999888777', photo: '' });
     navigate('/guest-dashboard');
   };
 
   const loginAsAdmin = () => {
-    login({ name: 'Admin', email: 'admin@alojalo.com', role: 'Administrador', phone: '000000', document: '000', photo: '' });
+    login({ name: 'Admin', email: 'admin@Alojate.com', role: 'Administrador', phone: '000000', document: '000', photo: '' });
     navigate('/admin-dashboard');
   };
 
   return (
     <div className="container login-page">
       <div className="login-card glass-panel">
-        <h2 className="login-title">{isRegister ? 'Crear Cuenta en Alojalo' : 'Bienvenido de nuevo'}</h2>
+        <h2 className="login-title">{isRegister ? 'Crear Cuenta en Alojate' : 'Bienvenido de nuevo'}</h2>
         <p className="login-subtitle">
           {isRegister ? 'Únete a la mejor comunidad de rentas vacacionales' : 'Ingresa para continuar'}
         </p>

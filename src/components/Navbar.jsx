@@ -17,8 +17,8 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="container navbar-container">
         <Link to="/" className="navbar-brand">
-          <img src="/logo.png" alt="Alojalo Logo" className="navbar-logo" />
-          <span className="gradient-text">Alojalo</span>
+          <img src="/logo.png" alt="Alojate Logo" className="navbar-logo" />
+          <span className="gradient-text">Alojate</span>
         </Link>
         
         <div className="navbar-links">

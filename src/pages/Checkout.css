@@ -33,3 +33,9 @@
 }
 
 .mt-lg { margin-top: var(--spacing-lg); }
+
+@media (max-width: 768px) {
+  .checkout-card {
+    padding: var(--spacing-md);
+  }
+}

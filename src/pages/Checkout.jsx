@@ -30,7 +30,7 @@ export default function Checkout() {
       <div className="checkout-card glass-panel">
         <div className="checkout-header">
           <h2>Activa tu anuncio</h2>
-          <p className="text-muted">Inicia tu suscripción mensual para publicar tu inmueble en Alojalo.</p>
+          <p className="text-muted">Inicia tu suscripción mensual para publicar tu inmueble en Alojate.</p>
         </div>
 
         <div className="payment-summary mt-lg">
@@ -55,7 +55,7 @@ export default function Checkout() {
                 return actions.order.create({
                   purchase_units: [
                     {
-                      description: "Activación mensual de inmueble (Alojalo)",
+                      description: "Activación mensual de inmueble (Alojate)",
                       amount: {
                         value: "15.00"
                       }

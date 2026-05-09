@@ -9,8 +9,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'logo.png'],
       manifest: {
-        name: 'Alojalo - Rentas Vacacionales',
-        short_name: 'Alojalo',
+        name: 'Alojate - Rentas Vacacionales',
+        short_name: 'Alojate',
         description: 'La mejor plataforma para encontrar y publicar alojamientos',
         theme_color: '#0047AB',
         background_color: '#ffffff',

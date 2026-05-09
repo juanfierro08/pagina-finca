@@ -32,7 +32,7 @@ export default function AdminDashboard() {
     <div className="container dashboard-page">
       <div className="dashboard-header mb-xl">
         <h1>Panel de Desarrollador / Admin</h1>
-        <p className="text-muted">Gestión total de la plataforma Alojalo.</p>
+        <p className="text-muted">Gestión total de la plataforma Alojate.</p>
       </div>
 
       <div className="dashboard-section">

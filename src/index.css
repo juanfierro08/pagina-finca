@@ -1,5 +1,5 @@
 :root {
-  /* Color Palette - Alojalo */
+  /* Color Palette - Alojate */
   --color-primary: #0047AB; /* Azul Cobalto */
   --color-primary-hover: #003380;
   --color-secondary: #50C878; /* Verde Esmeralda */
@@ -169,3 +169,24 @@ ul {
 .mb-sm { margin-bottom: var(--spacing-sm); }
 .text-center { text-align: center; }
 .text-muted { color: var(--color-text-muted); }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-md); /* Reduce container padding to 1rem on mobile */
+  }
+  
+  .btn-primary, .btn-secondary, .btn-success {
+    padding: 10px 16px; /* Slightly smaller buttons */
+    font-size: 0.95rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr; /* Stack form grids vertically on mobile */
+    gap: var(--spacing-sm);
+  }
+  
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
+}
