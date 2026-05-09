@@ -144,7 +144,7 @@ export default function CreateProperty() {
             <input 
               type="file" 
               name="rnt" 
-              accept="application/pdf"
+              accept=".pdf,application/pdf"
               className="input-field" 
               onChange={handleRntFileChange} 
               required 
@@ -199,7 +199,7 @@ export default function CreateProperty() {
 
           <div className="form-group mt-lg">
             <label>Reglas de la Casa</label>
-            <div className="rules-grid mb-sm" style={{ display: 'flex', gap: '20px' }}>
+            <div className="rules-grid mb-sm" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
               <label style={{ fontWeight: 'normal', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <input type="checkbox" name="pets" checked={formData.rules.pets} onChange={handleChange} /> Admite Mascotas
               </label>

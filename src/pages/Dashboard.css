@@ -70,3 +70,27 @@
 .ml-sm {
   margin-left: var(--spacing-sm);
 }
+
+@media (max-width: 768px) {
+  .dashboard-property-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dashboard-property-item img {
+    width: 100%;
+    height: 180px;
+  }
+  .property-status {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: var(--spacing-sm);
+  }
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
