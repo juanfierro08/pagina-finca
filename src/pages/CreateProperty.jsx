@@ -88,6 +88,7 @@ export default function CreateProperty() {
       const propertyData = {
         ...formData,
         hostId: user.id,
+        hostEmail: user.email,
         pricePerNight: Number(formData.pricePerNight),
         images: formData.images.length > 0 ? formData.images : ['https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&q=80&w=1000']
       };

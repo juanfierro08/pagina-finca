@@ -63,7 +63,19 @@ export const approveProperty = async (propertyId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const prop = MOCK_PROPERTIES.find(p => p.id === propertyId);
-      if (prop) prop.status = 'activo';
+      if (prop) {
+        prop.status = 'activo';
+        if (prop.hostEmail) {
+          fetch(`https://formsubmit.co/ajax/${prop.hostEmail}`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+                _subject: `Alojate - Tu propiedad ha sido APROBADA ✅`,
+                mensaje: `Hola, tu propiedad "${prop.title}" ha superado la revisión de RNT y ya está activa en la plataforma. ¡Lista para recibir huéspedes!`
+            })
+          }).catch(() => {});
+        }
+      }
       resolve(prop);
     }, 500);
   });
@@ -73,7 +85,19 @@ export const rejectProperty = async (propertyId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const prop = MOCK_PROPERTIES.find(p => p.id === propertyId);
-      if (prop) prop.status = 'rechazado';
+      if (prop) {
+        prop.status = 'rechazado';
+        if (prop.hostEmail) {
+          fetch(`https://formsubmit.co/ajax/${prop.hostEmail}`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+                _subject: `Alojate - Problemas con tu propiedad ❌`,
+                mensaje: `Hola, hemos revisado tu propiedad "${prop.title}" y el RNT proporcionado no es válido o legible. Tu publicación ha sido rechazada.`
+            })
+          }).catch(() => {});
+        }
+      }
       resolve(prop);
     }, 500);
   });
