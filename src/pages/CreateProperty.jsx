@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { createProperty } from '../services/firebaseMock';
+import { createProperty, activateProperty } from '../services/firebaseMock';
 import './CreateProperty.css';
 
 export default function CreateProperty() {
@@ -94,8 +94,11 @@ export default function CreateProperty() {
       
       const newProp = await createProperty(propertyData);
       
-      // Redirigir al flujo de pago "SaaS"
-      navigate(`/checkout/${newProp.id}`);
+      // TEMPORAL: Omitimos el pago para hacer pruebas
+      await activateProperty(newProp.id);
+      
+      // Redirigir al dashboard directamente
+      navigate('/host-dashboard');
     } catch (error) {
       console.error(error);
       alert('Error al publicar');
@@ -220,15 +223,17 @@ export default function CreateProperty() {
             />
           </div>
 
+          {/* TEMPORAL: Oculto para pruebas
           <div className="pay-to-list-banner glass-panel mt-xl">
             <h3>🌟 Suscripción Mensual (Pay-to-List)</h3>
             <p className="text-muted mt-sm">
               Para activar y mantener este anuncio visible en la plataforma, deberás suscribirte por <strong>$15.00 USD / mes</strong> en el siguiente paso.
             </p>
           </div>
+          */}
 
           <button type="submit" className="btn-primary w-100 mt-xl create-btn" disabled={loading}>
-            {loading ? 'Procesando...' : 'Guardar y Continuar al Pago'}
+            {loading ? 'Procesando...' : 'Publicar y Enviar a Revisión (Prueba sin pago)'}
           </button>
         </form>
       </div>
