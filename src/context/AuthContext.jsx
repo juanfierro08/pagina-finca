@@ -15,9 +15,11 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData) => {
+    const isAdmin = userData.email === 'juanfierro0821@gmail.com' || userData.email === 'admin@alojate.com';
     const mockUser = {
-      id: userData.role === 'Administrador' ? 'admin1' : `u_${Date.now()}`,
-      currentMode: 'Huesped', // Default mode
+      id: isAdmin ? 'admin1' : `u_${Date.now()}`,
+      role: isAdmin ? 'Administrador' : 'Usuario',
+      currentMode: isAdmin ? 'Administrador' : 'Huesped', // Default mode
       ...userData
     };
     setUser(mockUser);
