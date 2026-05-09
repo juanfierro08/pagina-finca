@@ -64,7 +64,11 @@ export default function AdminDashboard() {
                   <h4>{prop.title}</h4>
                   <p className="text-muted">{prop.location} - ${prop.pricePerNight} USD</p>
                   <p style={{fontSize: '0.8rem'}}>Host ID: {prop.hostId}</p>
-                  <p style={{fontSize: '0.9rem', fontWeight: 'bold', color: 'var(--color-primary)'}}>RNT: {prop.rnt || 'No proporcionado'}</p>
+                  {prop.rnt && prop.rnt.startsWith('data:application/pdf') ? (
+                    <a href={prop.rnt} download={`RNT_${prop.id}.pdf`} style={{fontSize: '0.9rem', fontWeight: 'bold', color: 'var(--color-primary)', textDecoration: 'underline'}}>📄 Descargar RNT (PDF)</a>
+                  ) : (
+                    <p style={{fontSize: '0.9rem', fontWeight: 'bold', color: 'var(--color-primary)'}}>RNT: {prop.rnt || 'No proporcionado'}</p>
+                  )}
                 </div>
                 <div className="property-status" style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px'}}>
                   <span className={`badge ${prop.status === 'activo' ? 'badge-success' : prop.status === 'en_revision' ? 'badge-warning' : 'badge-danger'}`} style={{background: prop.status === 'rechazado' ? 'red' : undefined}}>

@@ -37,8 +37,8 @@ export const activateProperty = async (propertyId) => {
             'Accept': 'application/json'
         },
         body: JSON.stringify({
-            _subject: `Nueva Propiedad Requiere Aprobación - RNT: ${prop?.rnt || 'N/A'}`,
-            mensaje: `El anfitrión ${prop?.hostId} ha pagado la suscripción y subido la propiedad "${prop?.title}". Por favor, verifica su RNT: ${prop?.rnt} en tu Panel de Administrador.`
+            _subject: `Nueva Propiedad Requiere Aprobación - RNT Recibido`,
+            mensaje: `El anfitrión ${prop?.hostId} ha pagado la suscripción y subido la propiedad "${prop?.title}". Por favor, descarga y verifica su RNT (PDF) en tu Panel de Administrador.`
         })
       }).catch(err => console.log('Simulación de correo fallida (sin internet o adblocker)', err));
 

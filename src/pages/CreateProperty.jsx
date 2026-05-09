@@ -47,6 +47,22 @@ export default function CreateProperty() {
     });
   };
 
+  const handleRntFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.type !== 'application/pdf') {
+        alert('Por favor, sube un archivo PDF válido para el RNT.');
+        e.target.value = null;
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({ ...formData, rnt: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleChange = (e) => {
     if (e.target.type === 'checkbox') {
       setFormData({
@@ -124,17 +140,17 @@ export default function CreateProperty() {
           </div>
 
           <div className="form-group mt-md">
-            <label>Registro Nacional de Turismo (RNT)</label>
+            <label>Registro Nacional de Turismo (RNT) - Sube el PDF</label>
             <input 
-              type="text" 
+              type="file" 
               name="rnt" 
+              accept="application/pdf"
               className="input-field" 
-              placeholder="Ej. 123456" 
-              value={formData.rnt} 
-              onChange={handleChange} 
+              onChange={handleRntFileChange} 
               required 
             />
-            <small className="text-muted">Obligatorio. Será verificado por administración antes de publicarse.</small>
+            {formData.rnt && <p className="text-muted mt-sm" style={{fontSize: '0.8rem', color: 'var(--color-secondary)'}}>✅ PDF del RNT cargado correctamente</p>}
+            <small className="text-muted">Obligatorio. Sube el documento oficial en PDF. Será verificado por administración antes de publicarse.</small>
           </div>
 
           <div className="form-group">
