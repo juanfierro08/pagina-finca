@@ -23,14 +23,16 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const cleanEmail = formData.email.trim().toLowerCase();
+
     // Regla especial y segura para tu cuenta de Administrador global
-    if (formData.email === 'juanfierro0821@gmail.com') {
+    if (cleanEmail === 'juanfierro0821@gmail.com' || cleanEmail === 'admin@alojate.com') {
       if (formData.password !== 'Admin123!') {
-        alert('Contraseña de administrador incorrecta.');
+        alert('Contraseña de administrador incorrecta. (Prueba con: Admin123!)');
         return;
       }
-      login({ name: 'Juan Fierro (Admin)', email: formData.email, phone: '000', document: '000', photo: '' });
-      navigate('/');
+      login({ name: 'Admin', email: cleanEmail, phone: '000', document: '000', photo: '' });
+      navigate('/admin-dashboard');
       return;
     }
 
@@ -39,17 +41,18 @@ export default function Login() {
 
     if (isRegister) {
       // Verificar si ya existe
-      if (usersDB.find(u => u.email === formData.email)) {
+      if (usersDB.find(u => u.email === cleanEmail)) {
         alert('Este correo ya está registrado. Por favor, inicia sesión.');
         return;
       }
       // Guardar nuevo usuario
-      usersDB.push(formData);
+      const newUser = { ...formData, email: cleanEmail };
+      usersDB.push(newUser);
       localStorage.setItem('alojate_users_db', JSON.stringify(usersDB));
-      login(formData);
+      login(newUser);
     } else {
       // Buscar usuario para iniciar sesión
-      const user = usersDB.find(u => u.email === formData.email);
+      const user = usersDB.find(u => u.email === cleanEmail);
       if (!user) {
         alert('Correo no encontrado. Por favor, regístrate primero.');
         return;
